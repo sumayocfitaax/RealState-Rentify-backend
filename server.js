@@ -24,7 +24,8 @@ app.use(express.json())
 
 const allowOrigins = [
   "http://localhost:5173",
-  "https://real-state-rentify-frontend.vercel.app"
+  "https://real-state-rentify-frontend.vercel.app",
+  "https://rentify-property-rent.vercel.app"
 ].filter(Boolean)
 
 app.use(cors({
@@ -63,6 +64,7 @@ const io = new Server(server, {
     origin: [
       "http://localhost:5173",
       "https://real-state-rentify-frontend.vercel.app",
+      "https://rentify-property-rent.vercel.app"
     ],
     methods: ["GET", "POST"],
     credentials: true
