@@ -20,25 +20,25 @@ const app = express()
 app.use(express.json())
 
 //middle ware
-app.use(cors());
+// app.use(cors());
 
 const allowOrigins = [
-  "http://localhost:5173/"
+  "http://localhost:5173",
+  "https://real-state-rentify-frontend.vercel.app"
 ].filter(Boolean)
 
-// app.use(cors({
-//   origin: function (origin, callback) {
-//     if (!origin) return callback(null, true);
+app.use(cors({
+  origin(origin, callback) {
+    if (!origin) return callback(null, true);
 
-//     if (allowOrigins.includes(origin)) {
-//       return callback(null, true);
-//     } else {
-//       console.log("Blocked CORS origin:", origin);
-//       return callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-//   credentials: true
-// }));
+    if (allowOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true,
+}));
 
 const port = process.env.PORT || 9000;
 
